@@ -3,348 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RUNLAB — Лаборатория бега | Одежда и обувь для бега</title>
+<title>RUNLAB — Лаборатория бега</title>
 <style>
-  :root{
-    --ink:#1c1e21;
-    --dark:#232529;
-    --dark2:#2b2d31;
-    --muted:#8a8d93;
-    --line:#ececec;
-    --yellow:#ffdc00;
-    --bg:#fff;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:"Segoe UI",-apple-system,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-  a{color:inherit;text-decoration:none}
-  img{display:block;width:100%;height:100%;object-fit:cover}
-  button{font:inherit;cursor:pointer;border:0}
-  .wrap{max-width:1440px;margin:0 auto;padding:0 48px}
-  h2{font-size:26px;font-weight:700;letter-spacing:-.01em;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
-  .sec{padding:56px 0}
+:root{
+  --ink:#111111;
+  --muted:#787774;
+  --line:#EAEAEA;
+  --bg:#FBFBFA;
+  --card:#FFFFFF;
+  --accent:#FF6B35;
+  --yellow:#FFC107;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'SF Pro Display','Helvetica Neue',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+h1,h2{font-family:'Newsreader','Playfair Display',serif;font-weight:400;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:clamp(28px,4vw,48px);margin-bottom:12px}
 
-  /* ── Шапка ── */
-  header{position:sticky;top:0;z-index:100;background:var(--dark);color:#fff}
-  .topbar{display:flex;align-items:center;gap:20px;padding:14px 0}
-  .logo{font-weight:900;font-style:italic;font-size:19px;line-height:.9;letter-spacing:.04em;flex:none}
-  .logo span{display:block}
-  .logo em{font-style:italic;color:var(--yellow)}
-  .btn-cat{display:flex;align-items:center;gap:8px;background:var(--yellow);color:#111;font-weight:600;font-size:14px;padding:10px 22px;border-radius:6px}
-  .btn-out{display:flex;align-items:center;gap:8px;background:none;color:#fff;font-weight:600;font-size:14px;padding:9px 22px;border-radius:6px;border:1px solid #55575c}
-  .btn-out:hover{border-color:#fff}
-  .hicons{margin-left:auto;display:flex;gap:18px;align-items:center}
-  .hicons svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:1.7;cursor:pointer}
-  .hicons svg:hover{stroke:var(--yellow)}
-  .subnav{display:flex;gap:26px;padding:0 0 13px;font-size:13.5px;color:#d6d7d9;flex-wrap:wrap}
-  .subnav a:hover{color:var(--yellow)}
-  .subnav .geo{margin-left:auto;display:flex;align-items:center;gap:6px}
-  .subnav .geo::before{content:"📍"}
+/* Шапка */
+header{position:sticky;top:0;z-index:100;background:rgba(251,251,250,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;gap:24px;padding:18px 0;flex-wrap:wrap}
+.logo{font-weight:900;font-size:18px;letter-spacing:.02em;text-transform:uppercase}
+.logo span{color:var(--accent)}
+.timer{display:flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;padding:8px 16px;border-radius:6px;font-variant-numeric:tabular-nums}
+.timer b{font-size:16px;margin:0 3px}
+nav{display:flex;gap:32px;margin-left:auto;font-size:14px;font-weight:500}
+nav a:hover{color:var(--accent)}
+.icons{display:flex;gap:20px;align-items:center}
+.icons svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.8;cursor:pointer}
+.icons svg:hover{stroke:var(--accent)}
 
-  /* ── Хиро-слайдер ── */
-  .hero{position:relative;height:min(72vh,640px);overflow:hidden;background:#111}
-  .slide{position:absolute;inset:0;opacity:0;transition:opacity .7s}
-  .slide.on{opacity:1}
-  .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,rgba(0,0,0,.35),transparent 55%)}
-  .slide .cap{position:absolute;right:56px;bottom:44px;z-index:2;color:#fff;text-align:right}
-  .slide .cap b{display:block;font-size:clamp(26px,3.4vw,44px);font-weight:700}
-  .slide .cap span{font-size:15px;opacity:.9}
-  .hero .arr{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:20px;backdrop-filter:blur(4px)}
-  .hero .arr:hover{background:rgba(255,255,255,.3)}
-  .hero .arr.l{left:18px}.hero .arr.r{right:18px}
+/* Хиро */
+.hero{position:relative;height:min(70vh,600px);display:flex;align-items:center;overflow:hidden;margin-bottom:80px}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,107,53,.08),rgba(255,193,7,.06))}
+.hero-img{position:absolute;inset:0;opacity:.15;filter:grayscale(.4)}
+.hero-c{position:relative;z-index:2}
+.hero h1{font-size:clamp(36px,6vw,72px);max-width:720px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:32px}
+.hero .cta{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;font-weight:600;font-size:15px;padding:16px 32px;border-radius:6px;transition:transform .2s}
+.hero .cta:active{transform:scale(.98)}
 
-  /* ── Карточка товара ── */
-  .card{background:#fff;border-radius:10px;padding:14px 14px 18px;position:relative;display:flex;flex-direction:column;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .card .ph{aspect-ratio:1/.92;border-radius:6px;overflow:hidden;background:#f5f5f5;margin-bottom:14px}
-  .card .ph img{transition:transform .4s}
-  .card:hover .ph img{transform:scale(1.05)}
-  .card .nm{font-size:14.5px;line-height:1.35;min-height:39px}
-  .card .pr{font-size:17px;font-weight:700;margin:10px 0 12px}
-  .card .pr s{color:var(--muted);font-weight:400;font-size:13.5px;margin-left:8px}
-  .buy{margin-top:auto;background:var(--yellow);color:#111;font-weight:600;font-size:14px;padding:11px 0;border-radius:6px;width:100%;text-align:center}
-  .buy:hover{background:#f0cf00}
-  .fav{position:absolute;top:20px;right:20px;z-index:2;width:26px;height:26px;stroke:#c9a800;fill:none;stroke-width:1.6;cursor:pointer}
-  .badge{position:absolute;top:20px;left:20px;z-index:2;background:var(--yellow);color:#111;font-size:12px;font-weight:700;padding:4px 9px;border-radius:4px}
+/* Категории — диагональная сетка */
+.cats{padding:80px 0;background:var(--card)}
+.cats h2{text-align:center;margin-bottom:48px}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.cat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.cat-grid{grid-template-columns:1fr}}
+.cat{position:relative;height:280px;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s}
+.cat:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent 60%)}
+.cat .t{position:absolute;left:24px;bottom:24px;z-index:2;color:#fff}
+.cat .t b{display:block;font-size:22px;font-weight:700;margin-bottom:6px}
+.cat .t span{font-size:13px;opacity:.9}
+.cat .badge{position:absolute;top:16px;right:16px;z-index:2;background:var(--yellow);color:var(--ink);font-size:11px;font-weight:700;padding:6px 12px;border-radius:4px;text-transform:uppercase}
 
-  /* ── Хиты: карусель ── */
-  .hits{position:relative}
-  .hrow{display:flex;gap:18px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:4px 2px 10px}
-  .hrow::-webkit-scrollbar{display:none}
-  .hrow .card{flex:0 0 268px;border:1px solid var(--line);box-shadow:none}
-  .hits .arr{position:absolute;top:38%;z-index:5;width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--line);font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-  .hits .arr.l{left:-14px}.hits .arr.r{right:-14px}
+/* Товары — появляются при клике на категорию */
+#prod{padding:80px 0;background:var(--bg);display:none}
+#prod.show{display:block}
+.filt{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;align-items:center}
+.filt button{background:var(--card);border:1px solid var(--line);padding:10px 20px;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.filt button:hover{border-color:var(--ink)}
+.filt button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.filt .reset{margin-left:auto;color:var(--accent);text-decoration:underline;cursor:pointer;font-weight:600;display:none}
+.filt .reset.show{display:block}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:1100px){.pgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.pgrid{grid-template-columns:1fr}}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;opacity:0;transform:translateY(20px)}
+.pcard.pop{animation:popIn .4s forwards}
+@keyframes popIn{to{opacity:1;transform:none}}
+.pcard.hide{display:none}
+.pcard .ph{aspect-ratio:1/.95;border-radius:8px;overflow:hidden;background:#f5f5f5;margin-bottom:14px}
+.pcard .ph img{transition:transform .4s}
+.pcard:hover .ph img{transform:scale(1.06)}
+.pcard .nm{font-size:14px;line-height:1.4;min-height:40px;margin-bottom:8px}
+.pcard .pr{font-size:18px;font-weight:700;margin-bottom:12px}
+.pcard .buy{width:100%;background:var(--ink);color:#fff;font-weight:600;font-size:14px;padding:12px;border-radius:6px;border:0;cursor:pointer}
+.pcard .buy:hover{background:#333}
+.pbadge{position:absolute;top:22px;left:22px;z-index:2;background:var(--yellow);color:var(--ink);font-size:11px;font-weight:700;padding:5px 10px;border-radius:4px}
 
-  /* ── Каталог + фильтры ── */
-  #catalog{background:#f6f6f7}
-  .chips{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px}
-  .chip{background:#fff;border:1px solid #ddd;border-radius:20px;padding:8px 18px;font-size:13.5px;font-weight:600;color:#444}
-  .chip:hover{border-color:#999}
-  .chip.on{background:var(--dark);color:var(--yellow);border-color:var(--dark)}
-  .fstate{display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--muted);margin:6px 0 18px}
-  .fstate b{color:var(--ink)}
-  .fstate .reset{display:none;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}
-  .fstate .reset.show{display:inline}
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-  @media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)};.wrap{padding:0 20px}}
-  .empty{display:none;text-align:center;color:var(--muted);padding:50px 0;font-size:15px}
-  .card.hide{display:none}
-  @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .card.pop{animation:pop .3s both}
-
-  /* ── Статьи (тёмный) ── */
-  #articles{background:var(--dark);color:#fff}
-  #articles h2{color:#fff}
-  .arts{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
-  @media(max-width:800px){.arts{grid-template-columns:1fr}}
-  .art{position:relative;height:300px;border-radius:8px;overflow:hidden}
-  .art::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.08) 60%)}
-  .art .t{position:absolute;left:22px;right:22px;bottom:18px;z-index:2;font-size:17px;font-weight:600;line-height:1.4;text-decoration:underline;text-underline-offset:4px}
-  .art .d{position:absolute;top:14px;right:14px;z-index:2;background:var(--yellow);color:#111;font-size:12px;font-weight:700;padding:4px 10px;border-radius:3px}
-  .art img{filter:saturate(.95)}
-  .art:hover img{transform:scale(1.03);transition:transform .4s}
-
-  /* ── Новости ── */
-  .news{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:26px}
-  @media(max-width:900px){.news{grid-template-columns:1fr 1fr}}
-  .nw .d{display:inline-block;background:#ececec;color:#666;font-size:12px;padding:4px 10px;border-radius:3px;margin-bottom:12px}
-  .nw h3{font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:4px;margin-bottom:10px;line-height:1.45}
-  .nw p{font-size:13.5px;color:var(--muted);line-height:1.55}
-
-  /* ── О магазине ── */
-  .about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-  @media(max-width:800px){.about{grid-template-columns:1fr}}
-  .about h2{text-decoration:none;font-size:24px;margin-bottom:14px}
-  .about p{font-size:14.5px;line-height:1.65;color:#444}
-  .about .ph{height:280px;border-radius:10px;overflow:hidden}
-
-  /* ── Футер ── */
-  footer{background:var(--dark);color:#cfd0d3;padding:52px 0 40px;font-size:13.5px}
-  .fgrid{display:grid;grid-template-columns:1fr 1fr 1.2fr 1.6fr 1fr;gap:34px}
-  @media(max-width:1000px){.fgrid{grid-template-columns:1fr 1fr}}
-  footer h4{color:#fff;font-size:14px;margin-bottom:16px;font-weight:700}
-  footer li{list-style:none;margin-bottom:11px}
-  footer a:hover{color:var(--yellow)}
-  .sub p{color:var(--yellow);font-weight:600;margin-bottom:10px;line-height:1.5}
-  .sub small{display:block;color:#9a9ca1;margin-bottom:12px;line-height:1.5}
-  .sub input{width:100%;background:none;border:1px solid #55575c;border-radius:8px;padding:13px 14px;color:#fff;font:inherit;margin-bottom:12px}
-  .sub button{background:var(--yellow);color:#111;font-weight:600;padding:12px 26px;border-radius:6px}
-  .fright{text-align:left}
-  .fright .tel{font-size:21px;font-weight:700;color:#fff}
-  .fright div{margin-top:12px}
-  .copy{margin-top:34px;color:#7c7e83}
+/* Футер */
+footer{padding:60px 0 40px;background:var(--ink);color:#ccc;font-size:14px}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:40px}
+@media(max-width:800px){.fgrid{grid-template-columns:1fr 1fr}}
+footer h4{color:#fff;font-size:15px;font-weight:700;margin-bottom:16px}
+footer li{list-style:none;margin-bottom:10px}
+footer a:hover{color:var(--accent)}
+.copy{text-align:center;color:#666;padding-top:32px;border-top:1px solid #333}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="topbar">
-      <a class="logo" href="#"><span>RUN<em>⚡</em></span><span>LAB</span></a>
-      <a class="btn-cat" href="#catalog">☰ Каталог</a>
-      <a class="btn-out" href="#catalog">Акции</a>
-      <a class="btn-out" href="#articles">☰ Меню</a>
-      <div class="hicons">
+    <div class="top">
+      <a class="logo" href="#">RUN<span>LAB</span></a>
+      <div class="timer">⏱ До старта «Забег недели»: <b id="days">0</b>д <b id="hrs">0</b>ч <b id="mins">0</b>м</div>
+      <nav>
+        <a href="#cats">Каталог</a>
+        <a href="#prod">Товары</a>
+        <a href="#">Подбор обуви</a>
+        <a href="#">Клуб</a>
+      </nav>
+      <div class="icons">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>
-        <svg viewBox="0 0 24 24"><path d="M12 21C7 16.5 3 13 3 9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4-4 7.5-9 12z"/></svg>
         <svg viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
       </div>
     </div>
-    <nav class="subnav">
-      <a href="#">Запись на подбор обуви</a>
-      <a href="#">Функциональное тестирование</a>
-      <a href="#">Ортопедические стельки</a>
-      <a href="#">Сертификаты</a>
-      <a href="#">Бренды</a>
-      <a href="#">Беговой клуб</a>
-      <a class="geo" href="#">Магазины</a>
-    </nav>
   </div>
 </header>
 
-<!-- Хиро-слайдер -->
-<section class="hero" id="hero">
-  <div class="slide on">
-    <img src="https://runlab.ru/upload/iblock/fca/l5mms1enc1ht7bomxrq0005fp635xtuh/asics_gel_pulse_17.jpg" alt="ASICS Gel-Pulse 17">
-    <div class="cap"><b>ASICS Gel-Pulse 17</b><span>Новый уровень амортизации</span></div>
-  </div>
-  <div class="slide">
-    <img src="https://runlab.ru/upload/iblock/082/8oi0e0t3dufws962pyfoga74baw05513/nike_vomero_plus.jpg" alt="Nike Vomero Plus">
-    <div class="cap"><b>Nike Vomero Plus</b><span>Максимум мягкости на каждый день</span></div>
-  </div>
-  <div class="slide">
-    <img src="https://runlab.ru/upload/iblock/fce/z3oh2thsj6bfiq4k8q37t2a4oualy4dc/hoka_novaya_collekcia.jpg" alt="Новая коллекция HOKA">
-    <div class="cap"><b>Новая коллекция HOKA</b><span>Уже в наличии в магазинах и онлайн</span></div>
-  </div>
-  <button class="arr l" onclick="mv(-1)">‹</button>
-  <button class="arr r" onclick="mv(1)">›</button>
-</section>
-
-<!-- Хиты продаж -->
-<section class="sec">
-  <div class="wrap hits">
-    <div class="sec-head"><h2>Хиты продаж</h2></div>
-    <div class="hrow" id="hrow"></div>
-    <button class="arr l" onclick="hs(-1)">‹</button>
-    <button class="arr r" onclick="hs(1)">›</button>
+<section class="hero">
+  <div class="hero-img"><img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=1600&q=80" alt=""></div>
+  <div class="wrap hero-c">
+    <h1>Найди свою <em>идеальную</em> пару для бега</h1>
+    <p>Видеоанализ походки, функциональное тестирование и персональный подбор обуви — всё для того, чтобы бег приносил удовольствие.</p>
+    <a class="cta" href="#cats">Выбрать по категориям →</a>
   </div>
 </section>
 
-<!-- Каталог -->
-<section class="sec" id="catalog">
+<section class="cats" id="cats">
   <div class="wrap">
-    <h2>Новинки</h2>
-    <div class="chips" id="chips">
-      <button class="chip on" data-f="all">Все</button>
-      <button class="chip" data-f="road">Шоссе</button>
-      <button class="chip" data-f="trail">Трейл</button>
-      <button class="chip" data-f="carbon">Карбоновые марафонки</button>
-      <button class="chip" data-f="m">Мужские</button>
-      <button class="chip" data-f="w">Женские</button>
+    <h2>Выбери свою категорию</h2>
+    <div class="cat-grid">
+      <div class="cat" data-cat="road" onclick="showCat('road')">
+        <img src="https://runlab.ru/upload/iblock/fca/l5mms1enc1ht7bomxrq0005fp635xtuh/asics_gel_pulse_17.jpg" alt="">
+        <div class="t"><b>Шоссе</b><span>Асфальт, треки, марафоны</span></div>
+      </div>
+      <div class="cat" data-cat="trail" onclick="showCat('trail')">
+        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80" alt="">
+        <div class="t"><b>Трейл</b><span>Грунт, горы, пересечённая местность</span></div>
+        <span class="badge">Популярно</span>
+      </div>
+      <div class="cat" data-cat="carbon" onclick="showCat('carbon')">
+        <img src="https://runlab.ru/upload/iblock/d8b/59xp768rlykyem93cj5ogyq2expqz3kb/nike_air_zoom_alphafly_next_3_fd8311_104_1_.jpg" alt="">
+        <div class="t"><b>Карбоновые марафонки</b><span>Скорость, соревнования, рекорды</span></div>
+      </div>
+      <div class="cat" data-cat="m" onclick="showCat('m')">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80" alt="">
+        <div class="t"><b>Мужские</b><span>Вся мужская коллекция</span></div>
+      </div>
+      <div class="cat" data-cat="w" onclick="showCat('w')">
+        <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&q=80" alt="">
+        <div class="t"><b>Женские</b><span>Вся женская коллекция</span></div>
+      </div>
+      <div class="cat" data-cat="all" onclick="showCat('all')">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" alt="">
+        <div class="t"><b>Все товары</b><span>Полный каталог</span></div>
+      </div>
     </div>
-    <div class="fstate"><span id="fdesc"><b>Все товары</b></span> · товаров: <b id="fcount">0</b> <span class="reset" id="freset">Сбросить ✕</span></div>
-    <div class="grid" id="grid"></div>
-    <div class="empty" id="empty">По выбранным фильтрам ничего не нашлось</div>
   </div>
 </section>
 
-<!-- Статьи -->
-<section class="sec" id="articles">
+<section id="prod">
   <div class="wrap">
-    <h2>Статьи</h2>
-    <div class="arts">
-      <a class="art" href="#"><img src="https://runlab.ru/upload/iblock/e4e/z9z7mi339rgosdq7x144bf19l28686a0/kak_ponyat_chto_krossovki_vam_ne_podkhodyat.jpg" alt=""><span class="d">7 июля</span><span class="t">Так бегать нельзя! Как понять, что кроссовки вам не подходят?</span></a>
-      <a class="art" href="#"><img src="https://runlab.ru/upload/iblock/7a3/6g9mt4ry9wd2fuuw4l4mxzvca8hdyf6n/pravila_letnikh_trenirovok_na_zhare_obl.jpg" alt=""><span class="d">3 июля</span><span class="t">Это важно знать: правила летних тренировок на жаре</span></a>
-      <a class="art" href="#"><img src="https://runlab.ru/upload/iblock/949/muhhir6csgayn5pckrvr3r41607ta3cd/IMG_5170.jpg" alt=""><span class="d">1 июля</span><span class="t">Новинки летнего бегового сезона: эта экипировка должна быть в вашем гардеробе</span></a>
-      <a class="art" href="#"><img src="https://runlab.ru/upload/iblock/d16/y4godxtoa26u9o0hksgj8o8q5p7mchyh/letnie_zabegi_v_sankt_peterburge_obl.JPG" alt=""><span class="d">23 июня</span><span class="t">Летние забеги в Санкт-Петербурге и Ленинградской области: эти события вам точно запомнятся</span></a>
+    <h2 id="ctitle">Каталог</h2>
+    <div class="filt" id="filt">
+      <button class="on" data-f="all">Все</button>
+      <button data-f="road">Шоссе</button>
+      <button data-f="trail">Трейл</button>
+      <button data-f="carbon">Карбон</button>
+      <button data-f="m">Мужские</button>
+      <button data-f="w">Женские</button>
+      <span class="reset" id="freset">Сбросить ✕</span>
     </div>
-  </div>
-</section>
-
-<!-- Новости -->
-<section class="sec">
-  <div class="wrap">
-    <h2>Новости</h2>
-    <div class="news">
-      <div class="nw"><span class="d">16 июня</span><h3>Покупать экипировку стало легче: теперь у нас доступна рассрочка</h3><p>Не нужно откладывать покупку экипировки, которая нужна уже завтра: оформляйте любую покупку в интернет-магазине в рассрочку.</p></div>
-      <div class="nw"><span class="d">3 июня</span><h3>Акция: тейп за 1 рубль</h3><p>«Акция: тейп за 1 рубль при заказе от 20 000 ₽».</p></div>
-      <div class="nw"><span class="d">27 апреля</span><h3>Скидки до 60% на кроссовки с мембраной</h3><p>Апрель сломался, мы починили: скидки до 60% на кроссовки с мембраной! Пусть в любую погоду тренировки проходят с комфортом.</p></div>
-      <div class="nw"><span class="d">7 апреля</span><h3>КОФЕ-РЕЙВ в новом магазине в Парке Горького</h3><p>Готовь кроссовки, зови друзей! Приглашаем получить заряд бодрости и хорошего настроения.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- О магазине -->
-<section class="sec">
-  <div class="wrap about">
-    <div class="ph"><img src="https://runlab.ru/upload/assets/images/8a1/5x5wjnj0zqlvhvr8mr7z3qwfq4jbezkd/index_pic_1.jpg" alt=""></div>
-    <div>
-      <h2>Интернет-магазин спортивной обуви и одежды</h2>
-      <p>Первые в России начали использовать видеоанализ для подбора беговой обуви. Мы живём спортом, поэтому большинство представленных товаров протестировано нашими сотрудниками. Проводим групповые и индивидуальные тренировки, организуем выезды на спортивные сборы и соревнования.</p>
-    </div>
+    <div class="pgrid" id="pgrid"></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div><h4>Каталог</h4><ul><li><a href="#">Мужчины</a></li><li><a href="#">Женщины</a></li><li><a href="#">Аксессуары</a></li><li><a href="#">Питание</a></li><li><a href="#">Спортивная аптека</a></li><li><a href="#">Спортивные часы</a></li></ul></div>
-      <div><h4>Помощь</h4><ul><li><a href="#">Запись на подбор обуви</a></li><li><a href="#">Беговой клуб</a></li><li><a href="#">Статьи</a></li><li><a href="#">Новости</a></li><li><a href="#">Видео</a></li><li><a href="#">Магазины и контакты</a></li></ul></div>
-      <div><h4>Информация</h4><ul><li><a href="#">О компании</a></li><li><a href="#">Бонусная программа</a></li><li><a href="#">Доставка и оплата</a></li><li><a href="#">Юридическая информация</a></li><li><a href="#">Возврат онлайн-заказов</a></li><li><a href="#">Возврат покупок</a></li></ul></div>
-      <div class="sub">
-        <p>Статьи о спортивной экипировке и как её выбрать, технике бега, тренировках.</p>
-        <small>Нажимая на кнопку «Подписаться», вы принимаете условия Пользовательского соглашения.</small>
-        <input type="email" placeholder="Эл. почта">
-        <button>Подписаться</button>
-      </div>
-      <div class="fright">
-        <span class="tel">8 800 777-06-67</span>
-        <div><a href="#">Заказать звонок ↗</a></div>
-        <div><a href="#">Задать вопрос ✉</a></div>
-        <div class="copy">© 2012-2026 Runlab<br><br>v. 1.0.0</div>
-      </div>
+      <div><h4>Каталог</h4><ul><li><a href="#">Мужчины</a></li><li><a href="#">Женщины</a></li><li><a href="#">Аксессуары</a></li><li><a href="#">Питание</a></li></ul></div>
+      <div><h4>Помощь</h4><ul><li><a href="#">Подбор обуви</a></li><li><a href="#">Беговой клуб</a></li><li><a href="#">Доставка</a></li><li><a href="#">Возврат</a></li></ul></div>
+      <div><h4>Компания</h4><ul><li><a href="#">О нас</a></li><li><a href="#">Контакты</a></li><li><a href="#">Вакансии</a></li></ul></div>
+      <div><h4>Контакты</h4><ul><li>8 800 777-06-67</li><li>info@runlab.ru</li><li>Москва, СПб, онлайн</li></ul></div>
     </div>
+    <div class="copy">© 2012-2026 Runlab. Лаборатория бега.</div>
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-/* ── Товары (runlab.ru, реальные цены и фото) ── */
-const RL = "https://runlab.ru/upload/iblock/";
-const PRODUCTS = [
-  {name:"Кроссовки Asics Sonicblast", price:24499, tags:["road","m"], hit:1, img:RL+"a7e/h2et8fkp5p3dr1l3m0jz85tp43k74b5g/asics_sonicblast_1011c083_300_01.jpg"},
-  {name:"Кроссовки Mizuno Neo Accera", price:19499, tags:["road","m"], hit:1, img:RL+"f43/4prq7l1ynv58w3zz569k4it6kvurj697/mizuno_neo_accera_j1gj2650_01_01.jpg"},
-  {name:"Кроссовки Asics Gel-Kayano 32", price:25999, tags:["road","m"], hit:1, img:RL+"722/8eso0wbigxkm1gixfb8wpmugzlhodqt3/asics_gel_kayano_32_1011c052_404_01.jpg"},
-  {name:"Кроссовки Nike Vomero Plus W", price:27999, tags:["road","w"], hit:1, img:RL+"140/nesfr7gtnyy42rtnq6wjv6lnb704rved/nike_vomero_plus_hv8154_501_w_01.jpg"},
-  {name:"Кроссовки Hoka Challenger 8", price:20999, tags:["trail","m"], badge:"Новинка", img:RL+"773/npr6t9r785kuvqrfbvkov58y9g3l03wg/hoka_challenger_8_1168716_fyp_01.jpg"},
-  {name:"Кроссовки Mizuno Hyperwarp Pro", price:26999, tags:["road","carbon","m"], img:RL+"541/h87pgs83cgyml440lbkfanp10dxgs9zy/mizuno_hyperwarp_pro_j1gc2674_01_01.jpg"},
-  {name:"Кроссовки Adidas Adizero Evo SL", price:17999, tags:["road","m"], badge:"Новинка", img:RL+"f3a/t3svirxjwsjbqqzgut21u5ff662z8awj/adidas_adizero_evo_sl_jh6206_01.jpg"},
-  {name:"Кроссовки Adidas Adizero Adios PRO 4", price:32999, tags:["road","carbon","m"], img:RL+"8de/v8viuaqfvza12p69nrvtx35olth7yokc/adidas_adizero_adios_pro_4_jr7088_01.jpg"},
-  {name:"Кроссовки Asics Sonicblast W", price:24499, tags:["road","w"], img:RL+"b8e/6fygunlyo6v640uo82e2285t9pxvt16x/asics_sonicblast_1012b862_020_w_01.jpg"},
-  {name:"Кроссовки Anta C10 PRO 2", price:35990, tags:["road","carbon","m"], img:RL+"392/sz46fp1y0q0s6qb6dt6skuqgozle7kle/anta_c10_pro_812615574_1_1_.jpg"},
-  {name:"Кроссовки Altra Experience Wild 3+ W", price:19990, tags:["trail","w"], img:RL+"942/1cj2uavj2hm1xfilu4rq8kdszwrsqvoc/altra_experience_wild_3_al0a85uz_220_w_01.jpg"},
-  {name:"Кроссовки Mizuno Hyperwarp Pro", price:24999, tags:["road","carbon","m"], img:RL+"bab/ae6fj3ewtarotjwgfuja92ka01kacicg/mizuno_hyperwarp_pro_j1gc2672_01_01.jpg"},
-  {name:"Кроссовки TYR Maverick-V1 W", price:17999, tags:["road","w"], img:RL+"5ac/dgmlnhm0s6jpuvman193fyjyr152cqm4/tyr_maverick_v1_w_wmvkv1820_01.jpg"},
-  {name:"Кроссовки Mizuno Wave Rider 29 W", price:17499, tags:["road","w"], img:RL+"35f/mbmjjseq4gvbu5wegr6faij5fgr3fcya/mizuno_wave_rider_29_j1gd2503_71_w_01.jpg"},
-  {name:"Кроссовки Asics Gel-Pulse 17", price:12999, tags:["road","m"], hit:1, badge:"Новинка", img:RL+"a12/mwvg4wzh1d9oxl294ikgei5g0kam0ksx/asics_gel_pulse_17_1011c153_400_01.jpg"},
-  {name:"Кроссовки Nike Air Zoom Alphafly Next% 3", price:39999, tags:["road","carbon","m"], hit:1, img:RL+"d8b/59xp768rlykyem93cj5ogyq2expqz3kb/nike_air_zoom_alphafly_next_3_fd8311_104_1_.jpg"},
+gsap.registerPlugin(ScrollTrigger);
+
+const RL="https://runlab.ru/upload/iblock/";
+const PRODUCTS=[
+  {name:"Кроссовки Asics Sonicblast",price:24499,tags:["road","m"],img:RL+"a7e/h2et8fkp5p3dr1l3m0jz85tp43k74b5g/asics_sonicblast_1011c083_300_01.jpg"},
+  {name:"Кроссовки Mizuno Neo Accera",price:19499,tags:["road","m"],img:RL+"f43/4prq7l1ynv58w3zz569k4it6kvurj697/mizuno_neo_accera_j1gj2650_01_01.jpg"},
+  {name:"Кроссовки Asics Gel-Kayano 32",price:25999,tags:["road","m"],img:RL+"722/8eso0wbigxkm1gixfb8wpmugzlhodqt3/asics_gel_kayano_32_1011c052_404_01.jpg"},
+  {name:"Кроссовки Nike Vomero Plus W",price:27999,tags:["road","w"],img:RL+"140/nesfr7gtnyy42rtnq6wjv6lnb704rved/nike_vomero_plus_hv8154_501_w_01.jpg"},
+  {name:"Кроссовки Hoka Challenger 8",price:20999,tags:["trail","m"],badge:"Новинка",img:RL+"773/npr6t9r785kuvqrfbvkov58y9g3l03wg/hoka_challenger_8_1168716_fyp_01.jpg"},
+  {name:"Кроссовки Mizuno Hyperwarp Pro",price:26999,tags:["road","carbon","m"],img:RL+"541/h87pgs83cgyml440lbkfanp10dxgs9zy/mizuno_hyperwarp_pro_j1gc2674_01_01.jpg"},
+  {name:"Кроссовки Adidas Adizero Evo SL",price:17999,tags:["road","m"],badge:"Новинка",img:RL+"f3a/t3svirxjwsjbqqzgut21u5ff662z8awj/adidas_adizero_evo_sl_jh6206_01.jpg"},
+  {name:"Кроссовки Adidas Adizero Adios PRO 4",price:32999,tags:["road","carbon","m"],img:RL+"8de/v8viuaqfvza12p69nrvtx35olth7yokc/adidas_adizero_adios_pro_4_jr7088_01.jpg"},
+  {name:"Кроссовки Asics Sonicblast W",price:24499,tags:["road","w"],img:RL+"b8e/6fygunlyo6v640uo82e2285t9pxvt16x/asics_sonicblast_1012b862_020_w_01.jpg"},
+  {name:"Кроссовки Anta C10 PRO 2",price:35990,tags:["road","carbon","m"],img:RL+"392/sz46fp1y0q0s6qb6dt6skuqgozle7kle/anta_c10_pro_812615574_1_1_.jpg"},
+  {name:"Кроссовки Altra Experience Wild 3+ W",price:19990,tags:["trail","w"],img:RL+"942/1cj2uavj2hm1xfilu4rq8kdszwrsqvoc/altra_experience_wild_3_al0a85uz_220_w_01.jpg"},
+  {name:"Кроссовки TYR Maverick-V1 W",price:17999,tags:["road","w"],img:RL+"5ac/dgmlnhm0s6jpuvman193fyjyr152cqm4/tyr_maverick_v1_w_wmvkv1820_01.jpg"},
+  {name:"Кроссовки Mizuno Wave Rider 29 W",price:17499,tags:["road","w"],img:RL+"35f/mbmjjseq4gvbu5wegr6faij5fgr3fcya/mizuno_wave_rider_29_j1gd2503_71_w_01.jpg"},
+  {name:"Кроссовки Asics Gel-Pulse 17",price:12999,tags:["road","m"],badge:"Новинка",img:RL+"a12/mwvg4wzh1d9oxl294ikgei5g0kam0ksx/asics_gel_pulse_17_1011c153_400_01.jpg"},
+  {name:"Кроссовки Nike Air Zoom Alphafly Next% 3",price:39999,tags:["road","carbon","m"],img:RL+"d8b/59xp768rlykyem93cj5ogyq2expqz3kb/nike_air_zoom_alphafly_next_3_fd8311_104_1_.jpg"},
+  {name:"Кроссовки Salomon Speedcross 6",price:18990,tags:["trail","m"],img:"https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=600&q=80"},
 ];
 
-const fmt = n => n.toLocaleString('ru-RU') + " ₽";
-const heart = '<svg class="fav" viewBox="0 0 24 24"><path d="M12 21C7 16.5 3 13 3 9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4-4 7.5-9 12z"/></svg>';
+const fmt=n=>n.toLocaleString('ru-RU')+" ₽";
+const grid=document.getElementById('pgrid');
+const LBL={all:'Все товары',road:'Шоссе',trail:'Трейл',carbon:'Карбоновые марафонки',m:'Мужские',w:'Женские'};
+let fType='all',fGender=null;
 
-function cardHTML(p, btn){
-  return `<div class="card${p._cls||''}" data-tags="${p.tags.join(' ')}">${p.badge?`<span class="badge">${p.badge}</span>`:''}${heart}
+function cardHTML(p){
+  return `<div class="pcard" data-tags="${p.tags.join(' ')}">${p.badge?`<span class="pbadge">${p.badge}</span>`:''}
     <div class="ph"><img loading="lazy" src="${p.img}" alt="${p.name}" onerror="this.parentElement.style.background='#eee';this.remove()"></div>
     <div class="nm">${p.name}</div><div class="pr">${fmt(p.price)}</div>
-    <button class="buy">${btn}</button></div>`;
+    <button class="buy">Купить</button></div>`;
 }
 
-/* Хиты */
-document.getElementById('hrow').innerHTML = PRODUCTS.filter(p=>p.hit).map(p=>cardHTML(p,'Подробнее')).join('');
-function hs(d){ document.getElementById('hrow').scrollBy({left: d*290*2, behavior:'smooth'}); }
+function showCat(c){
+  document.getElementById('prod').classList.add('show');
+  document.getElementById('prod').scrollIntoView({behavior:'smooth'});
+  if(c==='all'){fType='all';fGender=null;}
+  else if(c==='m'||c==='w'){fType='all';fGender=c;}
+  else{fType=c;fGender=null;}
+  applyF();
+}
 
-/* Каталог */
-const grid = document.getElementById('grid');
-grid.innerHTML = PRODUCTS.map(p=>cardHTML(p,'Купить')).join('');
-
-const LBL = {all:'Все товары', road:'Шоссе', trail:'Трейл', carbon:'Карбоновые марафонки', m:'Мужские', w:'Женские'};
-let fType = 'all', fGender = null;   // две оси: назначение + пол
 function applyF(){
-  let n = 0;
-  grid.querySelectorAll('.card').forEach(c=>{
-    const t = c.dataset.tags.split(' ');
-    const ok = (fType==='all' || t.includes(fType)) && (!fGender || t.includes(fGender));
-    c.classList.toggle('hide', !ok);
-    if(ok){ n++; c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+  let n=0,i=0;
+  grid.querySelectorAll('.pcard').forEach(c=>{
+    const t=c.dataset.tags.split(' ');
+    const ok=(fType==='all'||t.includes(fType))&&(!fGender||t.includes(fGender));
+    c.classList.toggle('hide',!ok);
+    if(ok){n++;c.style.animationDelay=(i*60)+'ms';c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop');i++;}
   });
-  document.getElementById('fcount').textContent = n;
-  const parts = [];
-  if(fType!=='all') parts.push(LBL[fType]);
-  if(fGender) parts.push(LBL[fGender]);
-  document.getElementById('fdesc').innerHTML = '<b>'+(parts.length?parts.join(' · '):'Все товары')+'</b>';
-  document.getElementById('freset').classList.toggle('show', fType!=='all'||!!fGender);
-  document.getElementById('empty').style.display = n? 'none':'block';
-  document.querySelectorAll('.chip').forEach(ch=>{
-    const f = ch.dataset.f;
-    ch.classList.toggle('on', f===fType || f===fGender || (f==='all'&&fType==='all'&&!fGender));
+  const parts=[];
+  if(fType!=='all')parts.push(LBL[fType]);
+  if(fGender)parts.push(LBL[fGender]);
+  document.getElementById('ctitle').textContent=parts.length?parts.join(' · '):'Каталог';
+  document.getElementById('freset').classList.toggle('show',fType!=='all'||!!fGender);
+  document.querySelectorAll('#filt button').forEach(b=>{
+    const f=b.dataset.f;
+    b.classList.toggle('on',f===fType||f===fGender||(f==='all'&&fType==='all'&&!fGender));
   });
 }
-document.getElementById('chips').addEventListener('click', e=>{
-  const f = e.target.dataset?.f; if(!f) return;
-  if(f==='all'){ fType='all'; fGender=null; }
-  else if(f==='m'||f==='w'){ fGender = fGender===f? null:f; }
-  else { fType = fType===f? 'all':f; }
+
+document.getElementById('filt').addEventListener('click',e=>{
+  const f=e.target.dataset?.f;if(!f)return;
+  if(f==='all'){fType='all';fGender=null;}
+  else if(f==='m'||f==='w'){fGender=fGender===f?null:f;}
+  else{fType=fType===f?'all':f;}
   applyF();
 });
-document.getElementById('freset').onclick = ()=>{ fType='all'; fGender=null; applyF(); };
-applyF();
+document.getElementById('freset').onclick=()=>{fType='all';fGender=null;applyF();};
 
-/* Хиро-слайдер */
-const slides = [...document.querySelectorAll('.slide')];
-let cur = 0;
-function mv(d){ slides[cur].classList.remove('on'); cur=(cur+d+slides.length)%slides.length; slides[cur].classList.add('on'); }
-setInterval(()=>mv(1), 6000);
+grid.innerHTML=PRODUCTS.map(cardHTML).join('');
+
+// Таймер до забега (7 дней от сейчас)
+const end=Date.now()+7*24*60*60*1000;
+setInterval(()=>{
+  const d=Math.max(0,end-Date.now()),days=Math.floor(d/864e5),hrs=Math.floor(d%864e5/36e5),mins=Math.floor(d%36e5/6e4);
+  document.getElementById('days').textContent=days;
+  document.getElementById('hrs').textContent=hrs;
+  document.getElementById('mins').textContent=mins;
+},1000);
+
+// GSAP: категории появляются снизу при скролле
+gsap.utils.toArray('.cat').forEach((el,i)=>{
+  gsap.from(el,{scrollTrigger:{trigger:el,start:"top 85%"},y:40,opacity:0,duration:.6,delay:i*.1});
+});
 </script>
 </body>
 </html>
