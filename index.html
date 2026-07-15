@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASCENT — outdoor & running gear</title>
+<style>
+  :root{
+    --ink:#141414;
+    --muted:#7a7a7a;
+    --line:#e9e9e9;
+    --accent:#d8ff3e;
+    --bg:#fafafa;
+    --r:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+  h2{font-size:clamp(22px,3vw,32px);font-weight:800;letter-spacing:-.02em}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px}
+  .sec-head a{font-size:13px;font-weight:600;color:var(--muted);border-bottom:1px solid transparent}
+  .sec-head a:hover{color:var(--ink);border-color:var(--ink)}
+
+  /* ── Header ── */
+  header{position:sticky;top:0;z-index:100;background:rgba(250,250,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar{display:flex;align-items:center;gap:28px;padding:16px 0}
+  .logo{font-weight:900;font-size:20px;letter-spacing:.12em}
+  .logo b{color:transparent;-webkit-text-stroke:1.2px var(--ink)}
+  nav ul{display:flex;gap:24px;list-style:none;font-size:13.5px;font-weight:600}
+  nav a{padding:6px 0;border-bottom:2px solid transparent;cursor:pointer}
+  nav a:hover{border-color:var(--accent)}
+  .spacer{flex:1}
+  .icons{display:flex;gap:16px;align-items:center}
+  .icons svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7}
+  .icons a{display:flex}
+
+  /* ── Hero ── */
+  .hero{position:relative;margin:20px 40px 0;border-radius:var(--r);overflow:hidden;height:min(72vh,560px)}
+  .hero img{position:absolute;inset:0}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(75deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.25) 55%,transparent 80%)}
+  .hero-inner{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:48px;color:#fff}
+  .hero .tag{display:inline-block;width:max-content;background:var(--accent);color:#111;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:16px}
+  .hero h1{font-size:clamp(34px,5vw,60px);font-weight:900;letter-spacing:-.02em;line-height:1.02;text-transform:uppercase;max-width:560px}
+  .hero p{margin-top:12px;font-size:15px;max-width:420px;color:#e6e6e6}
+  .hero .cta-row{margin-top:26px;display:flex;gap:12px}
+  .btn{display:inline-block;font-size:13.5px;font-weight:700;padding:13px 26px;border-radius:999px;transition:transform .15s ease;cursor:pointer;border:0}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.light{background:#fff;color:#111}
+  .btn.ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff;background:transparent}
+
+  /* ── Активности ── */
+  section{padding:64px 0 0}
+  .acts{display:grid;grid-template-columns:repeat(10,1fr);grid-auto-rows:180px;gap:14px}
+  .act{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;border:0;padding:0;text-align:left;background:#222}
+  .act img{position:absolute;inset:0;transition:transform .5s ease}
+  .act:hover img{transform:scale(1.06)}
+  .act::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.65))}
+  .act .lbl{position:absolute;left:18px;bottom:16px;z-index:2;color:#fff}
+  .act .lbl strong{display:block;font-size:17px;font-weight:800}
+  .act .lbl small{font-size:12px;color:#d9d9d9}
+  .act .arr{position:absolute;right:14px;bottom:14px;z-index:2;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;transition:background .2s}
+  .act:hover .arr{background:var(--accent);color:#111}
+  .act:nth-child(1){grid-column:span 4;grid-row:span 2}
+  .act:nth-child(2){grid-column:span 3}
+  .act:nth-child(3){grid-column:span 3}
+  .act:nth-child(4){grid-column:span 3}
+  .act:nth-child(5){grid-column:span 3}
+
+  /* ── Категории товаров ── */
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .cat{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;cursor:pointer;border:0;padding:0;background:#222}
+  .cat img{position:absolute;inset:0;transition:transform .5s ease}
+  .cat:hover img{transform:scale(1.06)}
+  .cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.6))}
+  .cat span{position:absolute;left:0;right:0;bottom:18px;z-index:2;text-align:center;color:#fff;font-size:16px;font-weight:800;letter-spacing:.02em}
+
+  /* ── Каталог с фильтрами ── */
+  #catalog{scroll-margin-top:90px}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+  .chip{font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;cursor:pointer;transition:all .15s}
+  .chip:hover{border-color:var(--ink)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip .n{opacity:.5;font-weight:500;margin-left:4px}
+  .filters + .filters .chip.on{background:var(--accent);color:#111;border-color:var(--accent)}
+  .fstate{margin:14px 0 20px;font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:12px;min-height:20px}
+  .fstate .reset{color:var(--ink);font-weight:600;cursor:pointer;border-bottom:1px dashed var(--ink);display:none}
+  .fstate .reset.show{display:inline}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 14px}
+  .prod{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:transform .2s ease, box-shadow .2s ease, opacity .3s;cursor:pointer}
+  .prod:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.08)}
+  .prod .pic{position:relative;aspect-ratio:1/1;overflow:hidden;background:#eee}
+  .prod .pic img{transition:transform .4s ease}
+  .prod:hover .pic img{transform:scale(1.05)}
+  .prod .badge{position:absolute;top:12px;left:12px;background:var(--accent);color:#111;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+  .prod .info{padding:14px 16px 16px}
+  .prod .kind{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  .prod h4{font-size:14.5px;font-weight:700;margin:4px 0 8px}
+  .prod .price{font-size:15px;font-weight:800}
+  .prod .price s{color:var(--muted);font-weight:500;font-size:13px;margin-left:8px}
+  .prod.hide{display:none}
+  @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .prod.pop{animation:pop .3s ease both}
+  .empty{grid-column:1/-1;text-align:center;padding:60px 0;color:var(--muted);font-size:15px;display:none}
+  .empty.show{display:block}
+
+  /* ── Сплит ── */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .split .pane{position:relative;border-radius:var(--r);overflow:hidden;height:340px;color:#fff}
+  .split img{position:absolute;inset:0}
+  .split .pane::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.65))}
+  .split .txt{position:absolute;left:28px;bottom:26px;z-index:2}
+  .split .txt h3{font-size:24px;font-weight:900;text-transform:uppercase}
+  .split .txt p{font-size:13px;color:#e2e2e2;margin:6px 0 14px}
+  .split .btn{padding:10px 20px;font-size:12.5px}
+
+  footer{margin-top:80px;background:#111;color:#bbb;font-size:13px}
+  .foot{display:flex;justify-content:space-between;align-items:center;padding:34px 0;flex-wrap:wrap;gap:16px}
+  .foot .logo{color:#fff}
+  .foot ul{display:flex;gap:22px;list-style:none}
+  .foot a:hover{color:#fff}
+
+  @media (max-width:960px){
+    .wrap{padding:0 18px}
+    .hero{margin:14px 18px 0;height:60vh}
+    .hero-inner{padding:26px}
+    nav{display:none}
+    .acts{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+    .act:nth-child(n){grid-column:span 1;grid-row:span 1}
+    .act:nth-child(1){grid-column:span 2;grid-row:span 2}
+    .cats{grid-template-columns:repeat(2,1fr)}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .split{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <a class="logo" href="#">ASC<b>ENT</b></a>
+    <nav>
+      <ul>
+        <li><a href="#acts">Активности</a></li>
+        <li><a href="#catalog" data-nav-reset>Каталог</a></li>
+        <li><a href="#catalog" data-nav-cat="shoes">Обувь</a></li>
+        <li><a href="#catalog" data-nav-cat="apparel">Одежда</a></li>
+        <li><a href="#catalog" data-nav-cat="packs">Рюкзаки</a></li>
+        <li><a href="#catalog" data-nav-cat="acc">Аксессуары</a></li>
+      </ul>
+    </nav>
+    <div class="spacer"></div>
+    <div class="icons">
+      <a href="#" aria-label="Поиск"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a>
+      <a href="#" aria-label="Профиль"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></a>
+      <a href="#" aria-label="Избранное"><svg viewBox="0 0 24 24"><path d="M12 20.5 4.7 13a4.9 4.9 0 0 1 0-7 4.6 4.6 0 0 1 6.7 0l.6.7.6-.7a4.6 4.6 0 0 1 6.7 0 4.9 4.9 0 0 1 0 7Z"/></svg></a>
+      <a href="#" aria-label="Корзина"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1800&auto=format&fit=crop" alt="Трейлраннинг в горах">
+  <div class="hero-inner">
+    <span class="tag">Новая коллекция</span>
+    <h1>Дальше, чем&nbsp;кончается тропа</h1>
+    <p>Обувь и экипировка для бега, хайкинга и гор — создана для тех, кто не останавливается.</p>
+    <div class="cta-row">
+      <a class="btn light" href="#catalog">В каталог</a>
+      <a class="btn ghost" href="#acts">Подобрать по активности</a>
+    </div>
+  </div>
+</div>
+
+<!-- АКТИВНОСТИ: клик = фильтр каталога -->
+<section id="acts">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Выбери свою активность</h2>
+      <a href="#catalog" data-nav-reset>Весь каталог →</a>
+    </div>
+    <div class="acts">
+      <button class="act" data-act="trail">
+        <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=1200&auto=format&fit=crop" alt="Трейлраннинг">
+        <div class="lbl"><strong>Трейлраннинг</strong><small>Кроссовки · жилеты · гидраторы</small></div>
+        <div class="arr">→</div>
+      </button>
+      <button class="act" data-act="road">
+        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=900&auto=format&fit=crop" alt="Шоссейный бег">
+        <div class="lbl"><strong>Шоссейный бег</strong><small>Темповые и марафонки</small></div>
+        <div class="arr">→</div>
+      </button>
+      <button class="act" data-act="hike">
+        <img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?q=80&w=900&auto=format&fit=crop" alt="Хайкинг">
+        <div class="lbl"><strong>Хайкинг</strong><small>Ботинки · мембраны · рюкзаки</small></div>
+        <div class="arr">→</div>
+      </button>
+      <button class="act" data-act="alpine">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop" alt="Альпинизм">
+        <div class="lbl"><strong>Горы и альпинизм</strong><small>Экипировка для высоты</small></div>
+        <div class="arr">→</div>
+      </button>
+      <button class="act" data-act="style">
+        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=900&auto=format&fit=crop" alt="Спортстайл">
+        <div class="lbl"><strong>Спортстайл</strong><small>Городские силуэты</small></div>
+        <div class="arr">→</div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- КАТЕГОРИИ: клик = фильтр каталога -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Каталог по категориям</h2>
+      <a href="#catalog" data-nav-reset>Весь каталог →</a>
+    </div>
+    <div class="cats">
+      <button class="cat" data-cat="shoes">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop" alt="Обувь">
+        <span>Обувь</span>
+      </button>
+      <button class="cat" data-cat="apparel">
+        <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop" alt="Одежда">
+        <span>Одежда</span>
+      </button>
+      <button class="cat" data-cat="packs">
+        <img src="https://images.unsplash.com/photo-1501554728187-ce583db33af7?q=80&w=800&auto=format&fit=crop" alt="Рюкзаки и сумки">
+        <span>Рюкзаки и сумки</span>
+      </button>
+      <button class="cat" data-cat="acc">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop" alt="Аксессуары">
+        <span>Аксессуары</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- КАТАЛОГ -->
+<section id="catalog">
+  <div class="wrap">
+    <div class="sec-head"><h2>Каталог</h2></div>
+
+    <div class="filters" id="f-act">
+      <button class="chip on" data-val="all">Все активности</button>
+      <button class="chip" data-val="trail">Трейлраннинг</button>
+      <button class="chip" data-val="road">Шоссе</button>
+      <button class="chip" data-val="hike">Хайкинг</button>
+      <button class="chip" data-val="alpine">Альпинизм</button>
+      <button class="chip" data-val="style">Спортстайл</button>
+    </div>
+    <div class="filters" id="f-cat">
+      <button class="chip on" data-val="all">Все категории</button>
+      <button class="chip" data-val="shoes">Обувь</button>
+      <button class="chip" data-val="apparel">Одежда</button>
+      <button class="chip" data-val="packs">Рюкзаки</button>
+      <button class="chip" data-val="acc">Аксессуары</button>
+    </div>
+    <div class="fstate">
+      <span id="count"></span>
+      <span class="reset" id="reset">Сбросить фильтры ✕</span>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty">Ничего не нашлось под эти фильтры — попробуй сбросить.</div>
+  </div>
+</section>
+
+<!-- СПЛИТ -->
+<section>
+  <div class="wrap split">
+    <div class="pane">
+      <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?q=80&w=1200&auto=format&fit=crop" alt="Женская коллекция">
+      <div class="txt">
+        <h3>Женская коллекция</h3>
+        <p>Посадка, продуманная для длинных дистанций.</p>
+        <a class="btn light" href="#catalog">Смотреть</a>
+      </div>
+    </div>
+    <div class="pane">
+      <img src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?q=80&w=1200&auto=format&fit=crop" alt="Мужская коллекция">
+      <div class="txt">
+        <h3>Мужская коллекция</h3>
+        <p>От асфальта до вершины — один гардероб.</p>
+        <a class="btn light" href="#catalog">Смотреть</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#">ASC<b>ENT</b></a>
+    <ul>
+      <li><a href="#">Доставка</a></li>
+      <li><a href="#">Возврат</a></li>
+      <li><a href="#">Контакты</a></li>
+      <li><a href="#">О бренде</a></li>
+    </ul>
+    <span>© 2026 ASCENT. Демо-макет.</span>
+  </div>
+</footer>
+
+<script>
+/* ── товары: act = активность, cat = категория ── */
+const PRODUCTS = [
+  {name:"Ridge Runner GTX", kind:"Кроссовки для трейла", act:"trail", cat:"shoes", price:14990, old:null, badge:"Новинка",
+   img:"https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=700&auto=format&fit=crop"},
+  {name:"Skyline Vest 8L", kind:"Беговой жилет", act:"trail", cat:"packs", price:8990, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1720911478715-8bef445c2522?q=80&w=700&auto=format&fit=crop"},
+  {name:"Storm Shell Ultra", kind:"Мембранная куртка", act:"trail", cat:"apparel", price:14490, old:17990, badge:"−20%",
+   img:"https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?q=80&w=700&auto=format&fit=crop"},
+  {name:"Tempo Carbon 2", kind:"Марафонки", act:"road", cat:"shoes", price:19990, old:null, badge:"Топ",
+   img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=700&auto=format&fit=crop"},
+  {name:"Pace Tee Aero", kind:"Беговая футболка", act:"road", cat:"apparel", price:2990, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=700&auto=format&fit=crop"},
+  {name:"Split Shorts 5\"", kind:"Беговые шорты", act:"road", cat:"apparel", price:3490, old:4490, badge:"−22%",
+   img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=700&auto=format&fit=crop"},
+  {name:"Summit Mid GTX", kind:"Хайкинг-ботинки", act:"hike", cat:"shoes", price:16990, old:null, badge:"Хит",
+   img:"https://images.unsplash.com/photo-1520639888713-7851133b1ed0?q=80&w=700&auto=format&fit=crop"},
+  {name:"Trekker 35", kind:"Рюкзак 35 л", act:"hike", cat:"packs", price:11990, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1622260614153-03223fb72052?q=80&w=700&auto=format&fit=crop"},
+  {name:"Fleece Base Warm", kind:"Флисовая кофта", act:"hike", cat:"apparel", price:5490, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1578932750294-f5075e85f44a?q=80&w=700&auto=format&fit=crop"},
+  {name:"Peak Harness Set", kind:"Страховочная система", act:"alpine", cat:"acc", price:9990, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=700&auto=format&fit=crop"},
+  {name:"Glacier Down 800", kind:"Пуховая куртка", act:"alpine", cat:"apparel", price:22990, old:27990, badge:"−18%",
+   img:"https://images.unsplash.com/photo-1557418669-db3f781a58c0?q=80&w=700&auto=format&fit=crop"},
+  {name:"Alpine Pro 50", kind:"Экспедиционный рюкзак", act:"alpine", cat:"packs", price:17990, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1499803270242-467f7311582d?q=80&w=700&auto=format&fit=crop"},
+  {name:"Urban Low '90", kind:"Кроссовки sportstyle", act:"style", cat:"shoes", price:10990, old:null, badge:"Новинка",
+   img:"https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=700&auto=format&fit=crop"},
+  {name:"City Hood Oversize", kind:"Худи", act:"style", cat:"apparel", price:6490, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=700&auto=format&fit=crop"},
+  {name:"Sling Pack 4L", kind:"Сумка через плечо", act:"style", cat:"packs", price:3990, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1761126081746-2b2b831b43ba?q=80&w=700&auto=format&fit=crop"},
+  {name:"Trail Cap Mesh", kind:"Кепка", act:"trail", cat:"acc", price:1990, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=700&auto=format&fit=crop"},
+  {name:"Run Socks ×3", kind:"Беговые носки", act:"road", cat:"acc", price:1490, old:null, badge:null,
+   img:"https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80&w=700&auto=format&fit=crop"},
+  {name:"Thermo Flask 500", kind:"Термофляга", act:"hike", cat:"acc", price:2490, old:2990, badge:"−17%",
+   img:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=700&auto=format&fit=crop"},
+];
+
+const ACT_NAMES = {trail:"Трейлраннинг", road:"Шоссе", hike:"Хайкинг", alpine:"Альпинизм", style:"Спортстайл"};
+const CAT_NAMES = {shoes:"Обувь", apparel:"Одежда", packs:"Рюкзаки", acc:"Аксессуары"};
+
+const grid = document.getElementById("grid");
+const state = {act:"all", cat:"all"};
+const fmt = n => n.toLocaleString("ru-RU") + " ₽";
+
+/* рендер карточек */
+PRODUCTS.forEach(p => {
+  const el = document.createElement("article");
+  el.className = "prod";
+  el.dataset.act = p.act;
+  el.dataset.cat = p.cat;
+  el.innerHTML = `
+    <div class="pic">
+      ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
+      <img loading="lazy" src="${p.img}" alt="${p.name}"
+           onerror="this.onerror=null;this.parentElement.style.background='linear-gradient(135deg,#c8cdc4,#6f766b)';this.remove()">
+    </div>
+    <div class="info">
+      <div class="kind">${p.kind}</div>
+      <h4>${p.name}</h4>
+      <div class="price">${fmt(p.price)}${p.old ? `<s>${fmt(p.old)}</s>` : ""}</div>
+    </div>`;
+  grid.appendChild(el);
+});
+
+function apply(scroll){
+  let shown = 0;
+  document.querySelectorAll(".prod").forEach(el => {
+    const ok = (state.act === "all" || el.dataset.act === state.act) &&
+               (state.cat === "all" || el.dataset.cat === state.cat);
+    el.classList.toggle("hide", !ok);
+    el.classList.remove("pop");
+    if (ok) { void el.offsetWidth; el.classList.add("pop"); shown++; }
+  });
+  document.getElementById("empty").classList.toggle("show", shown === 0);
+
+  /* чипы */
+  document.querySelectorAll("#f-act .chip").forEach(c => c.classList.toggle("on", c.dataset.val === state.act));
+  document.querySelectorAll("#f-cat .chip").forEach(c => c.classList.toggle("on", c.dataset.val === state.cat));
+
+  /* строка состояния */
+  const parts = [];
+  if (state.act !== "all") parts.push(ACT_NAMES[state.act]);
+  if (state.cat !== "all") parts.push(CAT_NAMES[state.cat]);
+  document.getElementById("count").textContent =
+    (parts.length ? parts.join(" · ") + " — " : "") + `товаров: ${shown}`;
+  document.getElementById("reset").classList.toggle("show", parts.length > 0);
+
+  if (scroll) document.getElementById("catalog").scrollIntoView({behavior:"smooth"});
+}
+
+/* чипы-фильтры */
+document.querySelectorAll("#f-act .chip").forEach(c =>
+  c.addEventListener("click", () => { state.act = c.dataset.val; apply(false); }));
+document.querySelectorAll("#f-cat .chip").forEach(c =>
+  c.addEventListener("click", () => { state.cat = c.dataset.val; apply(false); }));
+
+/* большие карточки активностей */
+document.querySelectorAll(".act[data-act]").forEach(b =>
+  b.addEventListener("click", () => { state.act = b.dataset.act; state.cat = "all"; apply(true); }));
+
+/* карточки категорий */
+document.querySelectorAll(".cat[data-cat]").forEach(b =>
+  b.addEventListener("click", () => { state.cat = b.dataset.cat; state.act = "all"; apply(true); }));
+
+/* меню в шапке */
+document.querySelectorAll("[data-nav-cat]").forEach(a =>
+  a.addEventListener("click", () => { state.cat = a.dataset.navCat; state.act = "all"; apply(false); }));
+document.querySelectorAll("[data-nav-reset]").forEach(a =>
+  a.addEventListener("click", () => { state.act = "all"; state.cat = "all"; apply(false); }));
+
+/* сброс */
+document.getElementById("reset").addEventListener("click", () => { state.act = "all"; state.cat = "all"; apply(false); });
+
+apply(false);
+</script>
+
+</body>
+</html>
